@@ -674,7 +674,7 @@ class PySendPulse:
         @return: dictionary with response message
         """
         logger.info("Function call: smtp_send_mail")
-        if (not email.get('html') or not email.get('text')) and not email.get('template'):
+        if all([not email.get('html'), not email.get('text')]) and not email.get('template'):
             return self.__handle_error('Seems we have empty body')
         elif not email.get('subject'):
             return self.__handle_error('Seems we have empty subject')
